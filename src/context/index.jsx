@@ -15,8 +15,10 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await loginUser(username, password);
-            setUser(response.data);
-            setToken(response.data.token);
+            console.log(response, "response");
+            setUser(response.username);
+            setToken(response.token);
+            localStorage.setItem("token", response.token);
             setIsAuthenticated(true);
         } catch (err) {
             console.error(err);
@@ -25,11 +27,18 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         }
     }
+
+    const logOutUser = async () => {
+        localStorage.removeItem("token");
+        setIsAuthenticated(false);
+    }
     
     return (
-        <AuthContext.Provider value={{ isAuthenticated, authenticateUser, user }}>
+      <AuthContext.Provider
+        value={{ isAuthenticated, authenticateUser, user, token, logOutUser }}
+      >
         {children}
-        </AuthContext.Provider>
+      </AuthContext.Provider>
     );
 }
 

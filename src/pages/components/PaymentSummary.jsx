@@ -1,11 +1,21 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const PaymentSummary = ({selectedProducts, handlePay, totalDeduction}) => {
+  const navigate = useNavigate();
 
   return (
     <div className="p-6 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Summary</h2>
+      <div className=" mb-4">
+        <h2 className="text-xl font-bold mb-4">Summary</h2>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-yellow-300 px-4 py-2 rounded-lg font-semibold"
+        >
+          ← Back
+        </button>
+      </div>
+
       <table className="w-full mb-4 border border-gray-300 rounded-lg">
         <thead>
           <tr className="bg-gray-200 text-left">
