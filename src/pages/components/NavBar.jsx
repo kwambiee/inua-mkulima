@@ -1,11 +1,10 @@
 import React from "react";
-// import toast from "react-hot-toast";
 import { useAuth } from "../../context";
 import { toast } from "react-toastify";
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
-
-    const { user, logOutUser } = useAuth();
+  const { user, logOutUser } = useAuth();
 
   const handleLogout = () => {
     logOutUser();
@@ -24,10 +23,13 @@ const Navbar = () => {
           Logged In As: <span className="uppercase">{user}</span>
         </span>
         <button
-          className="bg-white text-green-900 px-3 py-1 rounded flex items-center gap-2 border border-white hover:bg-gray-100"
-            onClick={handleLogout}
+          className=" text-white px-3 py-1 rounded flex items-center gap-2 border border-white hover:bg-gray-100"
+          onClick={handleLogout}
         >
-          <span>🔄</span> Logout
+          <span>
+            <LogOut />
+          </span>{" "}
+          Logout
         </button>
       </div>
     </nav>
