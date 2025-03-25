@@ -1,6 +1,4 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { set } from "react-hook-form";
-import { loginUser } from "../services/api";
 import { toast } from "react-toastify";
 
 const AuthContext = createContext();
@@ -10,16 +8,27 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [token, setToken] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const user = localStorage.getItem("user");
+
+        if (token && user) {
+            setUser(user);
+            setToken(token);
+            setIsAuthenticated(true);
+        }
+        setLoading(false);
+    }, []);
     
 
-     const authenticateUser = async (username, password) => {
+     const authenticateUser = async (user, token) => {
         setLoading(true);
         try {
-            const response = await loginUser(username, password);
-            setUser(response.username);
-            setToken(response.token);
-            localStorage.setItem("user", response.username);
-            localStorage.setItem("token", response.token);
+            setUser(user);
+            setToken(token);
+            localStorage.setItem("user", user);
+            localStorage.setItem("token", token);
             setIsAuthenticated(true);
             toast.success("Login successful");
         } catch (err) {
@@ -51,7 +60,5 @@ export const useAuth = () => {
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-
-  console.log(context, "context");
   return context;
 };

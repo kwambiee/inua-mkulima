@@ -12,7 +12,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/dashboard"
-              className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 cursor-pointer"
+              className={({ isActive }) =>
+                `flex items-center gap-3 p-3 rounded-md hover:bg-gray-400 cursor-pointer ${
+                  isActive
+                    ? "bg-gray-300 text-white border-l-4 border-[#E8B40A]"
+                    : ""
+                }`
+              }
             >
               <Home size={20} />
               <span>DashBoard</span>

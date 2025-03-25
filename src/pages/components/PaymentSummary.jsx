@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 const PaymentSummary = ({selectedProducts, handlePay, totalDeduction}) => {
   const navigate = useNavigate();
 
+
   return (
     <div className="p-6 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
       <div className=" mb-4">

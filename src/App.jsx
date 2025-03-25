@@ -6,6 +6,8 @@ import "./App.css";
 import DashBoard from "./pages/DashBoard";
 import { ToastContainer, toast } from "react-toastify";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
+import SuccessPage from "./pages/PaymentSuccess";
+import Receipt from "./pages/Receipt";
 
 function App() {
   return (
@@ -31,7 +33,30 @@ function App() {
               </ProtectedRoutes>
             }
           />
-          <Route path="/" element={<UsernamePage />} />
+          <Route
+            path="/payment-success"
+            element={
+              <ProtectedRoutes>
+                <SuccessPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <DashBoard />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/receipt"
+            element={
+              <ProtectedRoutes>
+                <Receipt />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

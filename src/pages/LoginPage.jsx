@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "../context";
 import { Eye, EyeOff } from "lucide-react";
 import bgImage from "../assets/bg.png";
+import { loginUser } from "../services/api";
 
 const UsernamePage = () => {
   const [username, setUsername] = useState("");
@@ -58,7 +59,7 @@ const PasswordPage = () => {
   let navigate = useNavigate();
   const { authenticateUser } = useAuth();
   const params = new URLSearchParams(window.location.search);
-  const username = params.get("username");
+  const user_name = params.get("username");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,9 +67,13 @@ const PasswordPage = () => {
       toast.error("Password is required");
       return;
     }
+
+    console.log(password, "----password");
     setLoading(true);
     try {
-      authenticateUser(username, password);
+      const response = await loginUser(user_name, password);
+      const { username, token } = response;
+      authenticateUser(username, token);
       navigate("/dashboard");
     } catch (error) {
       console.error(error);

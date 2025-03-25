@@ -3,10 +3,14 @@ import { useLocation } from "react-router-dom";
 import PaymentSummary from "./components/PaymentSummary";
 import Navbar from "./components/NavBar";
 import SideBar from "./components/SideBar";
+import { useAuth } from "../context";
+import { useNavigate } from "react-router";
 
 const PaymentPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedProducts } = location.state || { selectedProducts: [] };
+  const {user } = useAuth();
 
   console.log(selectedProducts, "selectedProducts");
 
@@ -16,7 +20,16 @@ const PaymentPage = () => {
   );
 
   const handlePay = () => {
-    alert(`Payment of ${totalDeduction} Kes processed`);
+      navigate("/payment-success", {
+        state: {
+          amount: totalDeduction,
+          reference: "Abakfah3913af",
+          date: new Date().toLocaleDateString(),
+          customer: user,
+          phone: "12345678",
+          products: selectedProducts,
+        },
+      });
   };
 
   return (
