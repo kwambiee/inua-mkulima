@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [token, setToken] = useState(null);
     
 
      const authenticateUser = async (username, password) => {
@@ -15,6 +16,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await loginUser(username, password);
             setUser(response.data);
+            setToken(response.data.token);
             setIsAuthenticated(true);
         } catch (err) {
             console.error(err);
