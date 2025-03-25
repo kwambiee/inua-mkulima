@@ -9,29 +9,39 @@ const generateToken = (username) => {
 
 
 export const loginUser = async (username, password) => {
-  try {
-    // Send request to API
-    const response = await axios.post(LOGIN_URL, { username, password });
 
-    // If login is successful, return the token
-    if (response.data.token) {
-      return response.data;
-    }
-  } catch (err) {
-    console.log(err.response, "error");
-    console.error(err.message);
-
-    // If the API returns "Invalid credentials," create a custom token
-    if (err.response.status == 400 || err.response.data.message === "Invalid credentials") {   
-      if (username === "emilys" && password === "emilypass") {
-        return {
-          username,
-          token: generateToken(username),
-        };
-      }
-    }
-    throw new Error("Login failed");
+  if (username === "emilys" && password === "emilypass") {
+    return {
+      username,
+      token: generateToken(username),
+    };
   }
+  throw new Error("Invalid login credentials  ");
+  // try {
+  //   // Send request to API
+  //   // const response = await axios.post(LOGIN_URL, { username, password });
+
+  //   // If login is successful, return the token
+  //   // if (response.data.token) {
+  //   //   return response.data;
+  //   // }
+  // } catch (err) {
+  //   console.log(err.response, "error");
+  //   console.error(err.message);
+
+  //   // If the API returns "Invalid credentials," create a custom token
+  //   if (err.response.status == 400 || err.response.data.message === "Invalid credentials") {   
+  //     if (username === "emilys" && password === "emilypass") {
+  //       return {
+  //         username,
+  //         token: generateToken(username),
+  //       };
+  //     }
+  //   } else {
+  //     throw new Error("Login failed");
+  //   }
+  //   // throw new Error("Login failed");
+  // }
 };
 
 export const fetchProducts = async () => {

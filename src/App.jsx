@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
-import {UsernamePage, PasswordPage} from "./pages/LoginPage";
+import { UsernamePage, PasswordPage } from "./pages/LoginPage";
 import PaymentPage from "./pages/PaymentPage";
 import "./App.css";
 import DashBoard from "./pages/DashBoard";
+import { ToastContainer, toast } from "react-toastify";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 function App() {
   return (
@@ -12,11 +14,27 @@ function App() {
         <Routes>
           <Route path="/login" element={<UsernamePage />} />
           <Route path="/login/password" element={<PasswordPage />} />
-          <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/payment" element={<PaymentPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoutes>
+                <DashBoard />
+              </ProtectedRoutes>
+            }
+          />
+
+          <Route
+            path="/payment"
+            element={
+              <ProtectedRoutes>
+                <PaymentPage />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/" element={<UsernamePage />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }

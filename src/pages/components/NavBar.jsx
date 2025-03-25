@@ -1,13 +1,13 @@
 import React from "react";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { useAuth } from "../../context";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
 
     const { user, logOutUser } = useAuth();
+
   const handleLogout = () => {
-    console.log("Logging out");
-    localStorage.removeItem("token");
     logOutUser();
     toast.success("Logged out successfully");
   };
@@ -25,7 +25,7 @@ const Navbar = () => {
         </span>
         <button
           className="bg-white text-green-900 px-3 py-1 rounded flex items-center gap-2 border border-white hover:bg-gray-100"
-          onClick={handleLogout()}
+            onClick={handleLogout}
         >
           <span>🔄</span> Logout
         </button>

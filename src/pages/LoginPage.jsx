@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useAuth } from "../context";
 import { Eye, EyeOff } from "lucide-react";
 import bgImage from "../assets/bg.png";
@@ -68,10 +69,9 @@ const PasswordPage = () => {
     setLoading(true);
     try {
       authenticateUser(username, password);
-      toast.success("Login successful");
       navigate("/dashboard");
     } catch (error) {
-      toast.error("Invalid login credentials");
+      console.error(error);
     } finally {
       setLoading(false);
     }
