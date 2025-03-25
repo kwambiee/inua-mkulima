@@ -53,14 +53,14 @@ const ProductList = ({ products }) => {
   return (
     <div className="w-4/5 mx-auto p-6">
       {/* Header */}
-      <div className="flex items-center gap-2">
+      <div className="">
+        <h1 className="text-2xl font-bold py-2 ">Product Details</h1>
         <button
           onClick={() => navigate(-1)}
           className="bg-yellow-300 px-4 py-2 rounded-lg font-semibold"
         >
           ← Back
         </button>
-        <h1 className="text-2xl font-bold">Product Details</h1>
       </div>
 
       {/* Wallet Balance */}
@@ -74,7 +74,10 @@ const ProductList = ({ products }) => {
       <div className="mt-6 flex gap-6 overflow-auto">
         {/* Product List */}
         <div className="border rounded-lg p-4 w-1/2 shadow-md">
-          <h2 className="font-bold text-lg">Products</h2>
+          <div className=" w-2/3 flex justify-between items-center font-bold text-lg">
+            <h2 className="">Products</h2>
+            <span className="">Price</span>
+          </div>
           <div className="mt-3 space-y-2">
             {products.products.map((product) => (
               <div
@@ -102,6 +105,12 @@ const ProductList = ({ products }) => {
         <div className="w-1/2">
           <div className="border rounded-lg h-96 p-4 w-full bg-yellow-50 shadow-md">
             <h2 className="font-bold text-lg">Selected Products</h2>
+            <div className="flex justify-between items-center mt-3">
+              <span className="font-semibold">Product</span>
+              <span className="font-semibold">Quantity</span>
+              <span className="font-semibold">Total</span>
+              <span className="font-semibold">Deduction</span>
+            </div>
             {selectedProducts.length === 0 ? (
               <p className="text-gray-500 mt-3 text-center">
                 Please select products from the products panel first
@@ -129,6 +138,10 @@ const ProductList = ({ products }) => {
                         <Plus />
                       </button>
                     </div>
+
+                    <span className="text-gray-700">
+                      {product.price * product.quantity} Kes
+                    </span>
                     <input
                       type="number"
                       className="border rounded px-2 py-1 w-20"
@@ -137,9 +150,6 @@ const ProductList = ({ products }) => {
                         handleDeductionChange(product, e.target.value)
                       }
                     />
-                    <span className="text-gray-700">
-                      {product.price * product.quantity} Kes
-                    </span>
                   </li>
                 ))}
               </ul>

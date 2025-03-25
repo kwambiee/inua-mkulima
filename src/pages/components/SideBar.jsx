@@ -18,19 +18,24 @@ const Sidebar = () => {
               <span>DashBoard</span>
             </NavLink>
           </li>
-          <li
-            className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 cursor-pointer"
-            onClick={() => navigate("/products")}
-          >
-            <ShoppingCart size={20} />
-            <span>Products</span>
+          <li>
+            <NavLink
+              to="/payment"
+              className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 cursor-pointer"
+            >
+              <ShoppingCart size={20} />
+              <span>Transactions</span>
+            </NavLink>
           </li>
-          <li
-            className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 cursor-pointer"
-            onClick={() => navigate("/settings")}
-          >
-            <Settings size={20} />
-            <span>Settings</span>
+
+          <li>
+            <NavLink
+              to="/reports"
+              className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-700 cursor-pointer"
+            >
+              <Settings size={20} />
+              <span>Reports</span>
+            </NavLink>
           </li>
         </ul>
       </nav>

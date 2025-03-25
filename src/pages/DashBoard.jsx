@@ -31,8 +31,8 @@ const DashBoard = () => {
     <div className=" w-full relative">
       <Navbar />
       <SideBar />
-      <div className="absolute right-0 w-[calc(100%-260px)] pt-24">
-        <ProductList products={products} className="" />
+      <div className="absolute right-0 w-[calc(100%-260px)] pt-16">
+        <ProductList products={products} />
       </div>
     </div>
   );
