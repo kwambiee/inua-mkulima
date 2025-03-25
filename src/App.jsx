@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 import SuccessPage from "./pages/PaymentSuccess";
 import Receipt from "./pages/Receipt";
+import LogoutPage from "./pages/LogOutPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<UsernamePage />} />
           <Route path="/login/password" element={<PasswordPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
           <Route
             path="/dashboard"
             element={

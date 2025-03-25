@@ -2,15 +2,15 @@ import React from "react";
 import { useAuth } from "../../context";
 import { toast } from "react-toastify";
 import { LogOut } from "lucide-react";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
   const { user, logOutUser } = useAuth();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logOutUser();
-    toast.success("Logged out successfully");
-  };
-  console.log(user, "user");
+const handleLogout = () => {
+  navigate("/logout"); // Navigate to the logout confirmation page
+};
 
   return (
     <nav className="bg-green-900 text-white px-6 py-3 flex justify-between items-center w-full shadow-md fixed inset-x-0 top-0 z-10">
