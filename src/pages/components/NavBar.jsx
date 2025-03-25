@@ -23,7 +23,7 @@ const handleLogout = () => {
           Logged In As: <span className="uppercase">{user}</span>
         </span>
         <button
-          className=" text-white px-3 py-1 rounded flex items-center gap-2 border border-white hover:bg-gray-100"
+          className=" text-white px-3 py-1 rounded flex items-center gap-2 border border-white hover:bg-gray-100 hover:text-green-900"
           onClick={handleLogout}
         >
           <span>
